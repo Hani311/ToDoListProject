@@ -110,7 +110,7 @@ ToDoList toDoList = new ToDoList("C:\\VScode repos .net\\ToDoListProject\\ToDoLi
         }
         Console.Write("Is completed? (true/false): ");
         isCompleted = bool.Parse(Console.ReadLine());
-        toDoList.EditTask(index, name, description, dueDate, isCompleted);
+        toDoList.EditTask(index, task, description, dueDate, isCompleted);
     }
     else if (choice == 3)
     {
