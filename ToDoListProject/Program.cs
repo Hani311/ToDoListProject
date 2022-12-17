@@ -1,4 +1,6 @@
-﻿ToDoList toDoList = new ToDoList("C:\\VScode repos .net\\ToDoListProject\\ToDoListProject\\todolist.txt"); // select your own path for your file
+﻿using System.Threading.Tasks;
+
+ToDoList toDoList = new ToDoList("C:\\VScode repos .net\\ToDoListProject\\ToDoListProject\\todolist.txt"); // select your own path for your file
 
  bool isCompleted;
  while (true)
@@ -52,20 +54,29 @@
         List<Task> tasks = toDoList.GetTasks();
         Console.WriteLine("your list of tasks");
         int indexx = 0;
-        Console.WriteLine("index".PadRight(15) + "Name".PadRight(15) + "Description".PadRight(50) + "DueDate".PadRight(35) + "Status".PadRight(15));
+      
+
+        Console.WriteLine("index".PadRight(15) + "Name".PadRight(25) + "Description".PadRight(50) + "DueDate".PadRight(15) + "Status".PadRight(15));
         foreach (Task task in tasks)
         {
             indexx = indexx + 1;
-
-
             Console.ForegroundColor = ConsoleColor.Blue;
-            Console.WriteLine(indexx.ToString().PadRight(15) + task.Name.PadRight(15) + task.Description.PadRight(50) + task.DueDate.ToString("yyyy-MM-dd").PadRight(35) + task.IsCompleted.ToString().PadRight(15));
+            Console.WriteLine(indexx.ToString().PadRight(15) + task.Name.PadRight(25) + task.Description.PadRight(50) + task.DueDate.ToString("yyyy-MM-dd").PadRight(15) + task.IsCompleted.ToString().PadRight(15));
             Console.ResetColor();
         }
         Console.WriteLine("------------------------------------------------------------------");
 
         Console.Write("Enter the \u001b[31mTASK NUMBER\u001b[0m to edit ");
         int index = int.Parse(Console.ReadLine());
+        // if the indexx not in the list show error
+        while (index > tasks.Count)
+        {
+            Console.WriteLine("The task number is not in the list", Console.ForegroundColor = ConsoleColor.Red);
+            Console.ResetColor();
+            Console.Write("Enter the \u001b[31mTASK NUMBER\u001b[0m to edit ");
+            index = int.Parse(Console.ReadLine());
+        }
+
         Console.Write("Enter task name: ");
         string name = Console.ReadLine();
         Console.WriteLine("Enter task description: ");
@@ -104,10 +115,11 @@
     else if (choice == 3)
     {
         List<Task> tasks = toDoList.GetTasks();
+        Console.WriteLine("Name".PadRight(25) + "Description".PadRight(50) + "DueDate".PadRight(15) + "Status".PadRight(15));
         foreach (Task task in tasks)
         {
             Console.ForegroundColor = ConsoleColor.Blue;
-            Console.WriteLine(task.Name.PadRight(15) + task.Description.PadRight(15) + task.DueDate.ToString("yyyy-MM-dd").PadRight(35) + task.IsCompleted.ToString().PadRight(15));
+            Console.WriteLine(task.Name.PadRight(25) + task.Description.PadRight(50) + task.DueDate.ToString("yyyy-MM-dd").PadRight(15) + task.IsCompleted.ToString().PadRight(15));
             Console.ResetColor();
 
         }
@@ -115,6 +127,13 @@
 
         Console.Write("Enter \u001b[31mTASK NAME\u001b[0m to delete it form your list: ");
         string name = Console.ReadLine();
+        while (!tasks.Any(x => x.Name == name))
+        {
+            Console.WriteLine("The task name is not in the list", Console.ForegroundColor = ConsoleColor.Red);
+            Console.ResetColor();
+            Console.Write("Enter \u001b[31mTASK NAME\u001b[0m to delete it form your list: ");
+            name = Console.ReadLine();
+        }
 
         toDoList.DeleteTask(name);
     }
@@ -123,11 +142,11 @@
         List<Task> tasks = toDoList.GetTasks();
         List<Task> sorted = tasks.OrderBy(o => o.DueDate).ToList();
         Console.WriteLine("your list of tasks");
-        Console.WriteLine("Name".PadRight(15) + "Description".PadRight(50) + "DueDate".PadRight(35) + "Status".PadRight(15));
+        Console.WriteLine("Name".PadRight(25) + "Description".PadRight(50) + "DueDate".PadRight(15) + "Status".PadRight(15));
         foreach (Task task in sorted)
         {
             Console.ForegroundColor = ConsoleColor.Blue;
-            Console.WriteLine(task.Name.PadRight(15) + task.Description.PadRight(50) + task.DueDate.ToString("yyyy-MM-dd").PadRight(35) + task.IsCompleted.ToString().PadRight(15));
+            Console.WriteLine(task.Name.PadRight(25) + task.Description.PadRight(50) + task.DueDate.ToString("yyyy-MM-dd").PadRight(15) + task.IsCompleted.ToString().PadRight(15));
             Console.ResetColor();
 
         }
