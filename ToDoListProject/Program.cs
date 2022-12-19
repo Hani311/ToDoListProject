@@ -56,7 +56,7 @@ ToDoList toDoList = new ToDoList("C:\\VScode repos .net\\ToDoListProject\\ToDoLi
         int indexx = 0;
       
 
-        Console.WriteLine("index".PadRight(15) + "Name".PadRight(30) + "Description".PadRight(50) + "DueDate".PadRight(15) + "Status".PadRight(15));
+        Console.WriteLine("index".PadRight(15) + "ToDo".PadRight(30) + "Description".PadRight(50) + "DueDate".PadRight(15) + "Status".PadRight(15));
         foreach (Task task in tasks)
         {
             indexx = indexx + 1;
@@ -115,7 +115,7 @@ ToDoList toDoList = new ToDoList("C:\\VScode repos .net\\ToDoListProject\\ToDoLi
     else if (choice == 3)
     {
         List<Task> tasks = toDoList.GetTasks();
-        Console.WriteLine("Name".PadRight(30) + "Description".PadRight(50) + "DueDate".PadRight(15) + "Status".PadRight(15));
+        Console.WriteLine("ToDo".PadRight(30) + "Description".PadRight(50) + "DueDate".PadRight(15) + "Status".PadRight(15));
         foreach (Task task in tasks)
         {
             Console.ForegroundColor = ConsoleColor.Blue;
