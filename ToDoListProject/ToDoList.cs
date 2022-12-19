@@ -31,7 +31,7 @@ using System.Threading.Tasks;
                         Task task = new Task
                         {
 
-                            Name = parts[0],
+                            ToDo = parts[0],
                             Description = parts[1],
                             DueDate = DateTime.Parse(parts[2]),
                             IsCompleted = bool.Parse(parts[3])
@@ -48,18 +48,18 @@ using System.Threading.Tasks;
             {
                 foreach (Task task in tasks)
                 {
-                    string line = $"{task.Name},{task.Description},{task.DueDate:yyyy-MM-dd},{task.IsCompleted}";
+                    string line = $"{task.ToDo},{task.Description},{task.DueDate:yyyy-MM-dd},{task.IsCompleted}";
                     writer.WriteLine(line);
                 }
             }
         }
 
-        public void AddTask(string name, string description, DateTime dueDate)
+        public void AddTask(string todo, string description, DateTime dueDate)
         {
             Task task = new Task
             {
                 // Index = index,
-                Name = name,
+                ToDo = todo,
                 Description = description,
                 DueDate = dueDate,
                 IsCompleted = false
@@ -68,19 +68,19 @@ using System.Threading.Tasks;
             SaveTasksToFile();
         }
 
-        public void EditTask(int index, string name, string description, DateTime dueDate, bool isCompleted)
+        public void EditTask(int index, string todo, string description, DateTime dueDate, bool isCompleted)
         {
             Task task = tasks[index - 1];
-            task.Name = name;
+            task.ToDo = todo;
             task.Description = description;
             task.DueDate = dueDate;
             task.IsCompleted = isCompleted;
             SaveTasksToFile();
         }
 
-        public void DeleteTask(string name)
+        public void DeleteTask(string todo)
         {
-            Task task = tasks.Find(t => t.Name == name);
+            Task task = tasks.Find(t => t.ToDo == todo);
             tasks.Remove(task);
             SaveTasksToFile();
         }
